@@ -1,0 +1,42 @@
+47d5 draw_level_map ; 맵 19x16을 [0x223]에 따라 0x17EA 또는 0x58D0에 그림, 0x5555로 지운 뒤 타일 6x16 마스크, [0x228]/[0x229]/[0x22a] 셈, 끝에 f_5313
+48ac present_backbuffer ; 0x17EA 또는 0x58D0 16000바이트를 CGA B800(2뱅크)이나 Tandy(f_4b29)로
+48f5 blit_rect_cells ; AX=폭 BX=줄 [0x9bcb]=원본 [0x22b]/[0x22c]=셀 열/행 -> 화면, 이어서 상태바 줄도
+4a37 blit_rect ; AX=폭 BX=줄 [0x9bcb]=백버퍼 원본 -> 같은 위치의 화면
+4b29 present_tandy ; DS:SI 선형 2bpp -> Tandy B800 4뱅크, cs:[0x8a] 워드 변환표
+4b61 draw_sprite_masked ; DS:SI 마스크, +[0x243] 이미지, DI 목적지, [0x23d]줄 [0x23f]폭 [0x241]줄마다 건너뛰기, AND/OR
+4ba5 draw_sprite_interleaved ; 줄마다 M0[w]I0[w]M1[w]I1[w] -> 2w바이트, w=[0x23f], 줄=[0x23d]
+4c10 play_tune ; DS:SI 스크립트: t n=템포, n 음 길이 게이트, r 길이=쉼표, x=끝
+4d05 pit2_set_divisor ; CX -> 포트 0x42
+4d10 speaker_on ; 포트 0x61 |= 3
+4d19 speaker_off ; 포트 0x61 &= 0xFC
+4d22 delay_units ; CX*260 빈 루프
+4d2e freq_to_divisor ; CX = 1193182/CX
+4d3d note_to_divisor ; AL=음번호 -> DX=분주비
+4d63 step_click ; [0x9b97]==0이면 스피커 펄스 5개
+4d92 pause_draw_record ; SI=기록표, 스택 인수 3개
+4f78 game_clock_tick ; 18틱마다 초++, 토너먼트 시간 제한 -> [0x280], BIOS 틱 0으로
+5017 calc_score ; [0x293]=max(0,[0x22a]*10-[0x291]/8)
+5049 pause_screen ; pause1/pause1a, 기록/점수/이름/시간 표시, Enter=복귀, 왼쪽 버튼="single"에 저장
+5313 draw_status_bar ; 191-199줄: 레벨 2, 이동 4, 밀기 4, H:MM:SS
+5412 print_number ; es:[0x9bc1]=값 CX=자리수 BP=백버퍼 오프셋, 0x2CA1 숫자 글리프 2x9
+5453 level_complete ; 승리 장면, 곡, 약 5초 깜박임, 기록 갱신, 점수 +50, 상위3 삽입, 저장, [0x281]=1
+5b5b save_records ; move/push/time/score/names 파일 쓰기
+5c0d save_undo_state ; 0x9C81에 18바이트 되돌리기 상태
+5c8c update_player_area ; 플레이어 주변 최대 5x5셀 + 상태바를 f_48f5로 화면에
+5dc8 clear_level_records ; 현재 레벨 기록을 0으로 (F3)
+d0221 statusbar_pass ; byte
+d0222 win_timeout_flag ; byte
+d0223 draw_to_alt ; byte 0=백버퍼 0x17EA, 0이 아니면 보조 버퍼 0x58D0
+d0225 custom_level ; byte 1=편집 레벨: 상태바/시계/기록 없음
+d039f best_moves ; word[99]
+d0465 best_pushes ; word[99]
+d052b best_time ; byte[99][3]
+d0654 top_scores ; word[99][3]
+d08a6 top_names ; byte[99][3][10]
+d9b98 blit_dcol ; byte
+d9b99 blit_drow ; byte
+d9bcb blit_src ; word
+d9bd9 tune_tempo ; word
+d9bdf note_freqs ; word[12]
+d9bf7 win_tune ; 승리 곡 스크립트
+d9ca2 player_sprites ; word[12]

@@ -1,0 +1,52 @@
+5e2b game_loop ; in-game main loop: init player pos, idle redraw/clock/HUD, key dispatch (Esc/P/U/F1/F2/F3/arrows), move/push rules, win check
+6a58 anim_step_right ; walk/push-right animation (2+2 or 4+4 frames, 1 tick each, footstep click every 2nd frame)
+7316 anim_step_left ; left version
+7bff anim_step_up ; up version
+8032 anim_step_down ; down version
+8458 draw_tile_part ; draw slice of map tile at [0x250]+SI to [0x247]+CX, DI=offset in tile sprite, clipped by [0x9b94]/col/row
+5c0d save_undo ; snapshot pos, 8 plus-shaped cells, [0x247], col,row, pushes, moves into 0x9c81
+5c8c blit_player_window ; copy region around player from back buffer to screen via f_48f5
+4d63 footstep_click ; short speaker click unless [0x9b97]
+121f speaker_sweep ; SI->{start half-period, cycles, period step}
+4f78 clock_tick ; advance h:m:s every 18 ticks, tournament time-limit check -> [0x280]
+d0221 blit_first_flag ; byte, cleared at game start
+d0225 no_clock_flag ; byte, !=0 -> clock/HUD disabled, pause ignored
+d0228 goal_count ; byte, number of goals (recounted by f_47d5)
+d0229 box_count ; byte, number of boxes
+d022a boxes_on_goals ; byte, win when == goal_count == box_count
+d023d spr_rows ; word, rows for f_4b61
+d023f spr_bytes ; word, bytes per row for f_4b61
+d0241 spr_src_skip ; word, extra source bytes skipped per row
+d0243 spr_plane_ofs ; word, offset from mask plane to image plane
+d027e tournament_mode ; byte
+d027f resume_flag ; byte
+d0280 time_over ; byte, 1 = tournament time expired
+d028f moves ; word, max 9999
+d0291 pushes ; word, max 9999
+d0295 time_hours ; byte
+d0296 time_minutes ; byte
+d0297 time_seconds ; byte
+d1787 tile_sprite_tab ; word[5]: floor, wall, box, goal, box-on-goal sprites (24x16, mask 0x60 + image)
+d579c level_map ; 19x16 bytes: 0 floor,1 wall,3 goal,0x14 box,0x17 box on goal
+d9b90 blocked_right ; byte
+d9b91 blocked_left ; byte
+d9b92 blocked_up ; byte
+d9b93 blocked_down ; byte
+d9b94 move_dir ; byte 1 R,2 L,3 U,4 D
+d9b95 pushing ; byte
+d9b96 pause_quit ; byte, set by pause screen to leave level
+d9b97 sound_off ; byte, F2 toggle
+d9b9a step_click_toggle ; byte
+d9b9b idle_chime_min ; byte
+d9b9c idle_chime_sec ; byte
+d9b9d row_scr_ofs_tab ; word[16], back-buffer offset of each map row's sprite top
+d9bbf anim_frame ; word
+d9bc1 bg_player_scr ; word, player address in 0x58CC background buffer
+d9c6c player_facing ; byte 0 R,2 L,4 U,6 D
+d9c81 undo_buf ; 18 bytes
+d9ca2 spr_stand_tab ; word[4] standing player sprites (24x16)
+d9caa spr_walk_tab ; word[4] x4 dirs walk frames (32x16)
+d9cca spr_push_tab ; word[4] x4 dirs push frames
+d9cea spr_box_h ; word[4] sliding box frames
+d9dc0 spr_box_on_goal ; 24x16 box-on-goal sprite
+dd25 tourn_time_limit ; byte, minutes

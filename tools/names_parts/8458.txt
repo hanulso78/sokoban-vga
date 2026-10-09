@@ -1,0 +1,13 @@
+8458 draw_neighbor_tile ; SI=map delta from [0x250], CX=dest ofs, DI=ofs in tile; clips by [0x9b94]/[0x22b]/[0x22c]; masked blit
+87d0 blit_rect_opaque ; DS:SI->ES:DI, width DS:[0x680], BL rows, dest add ES:[0x241]
+87e6 draw_name_cursor ; 2x2 bytes from DS:SI to ES:[0x687] (2CEC)
+87fc draw_name_glyph ; 8x8 glyph from DS:SI to ES:[0x685] (2CEC)
+8814 players_screen ; players1/2 name entry, player count, menu: new tournament/custom/back or resume single/tour
+d0293 score ; word
+d1664 fname_single ; "single"
+d58cc bg_buffer ; 16000-byte background / load area
+d9840 player_names ; 4 x 10 bytes, scan codes
+d9868 tour_file_buf ; 0xD4 bytes
+d9bcb dirty_rect_ofs ; back-buffer origin for f_4a37 partial blit
+ddd20 fname_tour ; "tour"
+ddd28 name_write_ptr ; into 9840

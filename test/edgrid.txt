@@ -1,0 +1,14 @@
+3000 key enter
+6000 key left
+8500 key enter
+12000 key 5
+12500 key 1
+13000 key a
+24000 shot g1
+24500 key right
+25000 key right
+25500 key down
+26500 shot g2
+27000 key enter
+28000 shot g3
+28500 quit

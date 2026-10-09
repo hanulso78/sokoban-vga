@@ -1,0 +1,1 @@
+50:enter b:enter 5:a 5:enter 5:b 5:enter 5:enter 20:down 20:enter 20:enter 20:right 20:enter 20:esc 20:enter 20:enter 5:left 5:up 5:right 20:esc 20:right 20:right 20:enter 20:left 20:enter

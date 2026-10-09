@@ -1,0 +1,14 @@
+3000 key enter
+6000 key enter
+9000 shot n1
+9500 key a
+10000 key enter
+11000 shot n2
+11500 key enter
+15000 shot n3
+16000 key 1
+16500 key a
+21000 shot n4
+21500 key right
+22500 shot n5
+23000 quit

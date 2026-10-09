@@ -1,0 +1,15 @@
+2500 key enter
+6000 key enter
+6600 shot d01
+6680 shot d02
+6760 shot d03
+6840 shot d04
+6920 shot d05
+7000 shot d06
+7080 shot d07
+7160 shot d08
+7240 shot d09
+7320 shot d10
+7400 shot d11
+7480 shot d12
+9000 quit

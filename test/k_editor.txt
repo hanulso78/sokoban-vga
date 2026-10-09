@@ -1,0 +1,1 @@
+50:enter b:left b:enter 20:5 20:1 20:a 30:esc 30:enter 30:right 30:right 30:enter 30:down 30:enter 30:right 30:enter 30:esc 30:down 30:right 30:enter 30:enter 30:esc

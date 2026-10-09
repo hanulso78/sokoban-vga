@@ -1,0 +1,27 @@
+2500 key enter
+5500 key left
+5600 shot m00
+5640 shot m01
+5680 shot m02
+5720 shot m03
+5760 shot m04
+5800 shot m05
+5840 shot m06
+5880 shot m07
+5920 shot m08
+5960 shot m09
+6000 shot m10
+6040 shot m11
+6080 shot m12
+6120 shot m13
+6160 shot m14
+6200 shot m15
+6240 shot m16
+6280 shot m17
+6320 shot m18
+6360 shot m19
+6400 shot m20
+6440 shot m21
+6480 shot m22
+6520 shot m23
+6860 quit

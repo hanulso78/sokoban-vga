@@ -1,0 +1,6 @@
+92a5 tour_select_levels ; tournament level-list picker (select1-4 screen, 9x11 grid lv1-99, Enter toggles, Esc->OK/Clear/All); DS=2CEC ES=0A39
+9881 tour_main ; tournament loop: per-player turns, time limit, scoring, save TOUR/pl1-4
+a164 tour_draw_scoreboard ; load tour1/tour2, per player: name, solved, level no, score*100
+d9bc1 num_arg ; number to print for f_5412 (destroyed); also anim sprite ofs
+ddd25 tour_time_limit ; minutes per turn (1..20)
+ddd26 tsel_removed ; 1 = Enter removed level from list

@@ -1,0 +1,13 @@
+3000 shot t
+4000 key enter
+7000 shot l
+8500 key enter
+11000 shot p
+11500 key a
+12000 key enter
+13000 key enter
+17500 shot e
+18000 key 1
+18500 key a
+23500 shot g
+24000 quit

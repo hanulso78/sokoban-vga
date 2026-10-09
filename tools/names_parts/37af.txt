@@ -1,0 +1,57 @@
+37af editor_icon_menu ; editor command screen: 8 icons (tools wall/box/goal, save, new, load, test, exit)
+37bd eim_reload ; load icons1/icons2 to back buffer, icon_dat to 0x58cc, cs:[0x8a]=0x88c
+382f eim_select ; dispatch on DI = highlighted icon back-buffer offset
+3838 eim_icon_wall ; icon A @0x509: Enter -> [0x22d]=1
+3916 eim_icon_box ; icon B @0xab7: Enter -> [0x22d]=2
+39ff eim_icon_goal ; icon C @0x2fc: Enter -> [0x22d]=3
+3ae8 eim_icon_save ; icon D @0x1ef5: save map to edt file for [0x235], clears edt_stat
+3b8b eim_save_level ; write 0x566a record into 0x992b half, write 612 bytes
+3caa eim_icon_new ; icon E @0x20e3
+3d58 eim_new_confirm ; yes/no dialog; yes clears map+record
+3f00 eim_icon_load ; icon F @0xeec
+3fa3 eim_load_dialog ; number-entry dialog (2 digits, OK/clear buttons)
+404a eim_add_digit ; accumulate digit, draw 3x8 glyph from 0x180c:[0xe+2*(d-1)]
+41cc eim_load_enter ; validate number, pick tabl/edt file, load level into editor
+42f5 eim_icon_test ; icon G @0x2249
+43a6 eim_test_play ; backup map, clear cursor cell, call f_5e2b
+4442 eim_solved_save_dialog ; after solving test: ask to save verified level
+462f eim_save_verified ; set edt_stat=1, write level, f_5dc8, f_5b5b
+46d4 eim_restart ; [0x223]=0, back to eim_reload
+470b eim_icon_exit ; icon H @0x18d5: Enter -> [0x27b]=1
+47cf eim_return ; [0x222]=0; ret
+d0220 ed_map_nonempty ; byte: 1 if the edited map has content/was loaded, 0 after new
+d0222 play_flag ; byte: cleared before test play and on menu exit
+d0223 draw_to_bg ; byte: f_47d5 target (0=back buffer 0x17ea, else 0x58cc+4)
+d0224 ed_backup_pending ; byte: 1 = map at 0x566a+2 must be restored (after test play)
+d0226 joy_delay ; byte: tick delay for f_1166 in joystick polling (5, 9 on save icon)
+d0227 joy_param ; byte: parameter for f_1194 (6)
+d022b ed_cur_col ; byte: editor cursor column 0..18
+d022c ed_cur_row ; byte: editor cursor row 0..15
+d022d ed_tool ; byte: editor tool 1=wall 2=box(0x14) 3=goal
+d0235 cur_level ; byte: current level number (edit slot 51..100)
+d0245 lvl_half_ofs ; word: 0 or 0x132, which level inside 2-level file
+d0247 ed_cur_addr ; word: cursor back-buffer address
+d0249 ed_cur_addr_save ; word: saved during test play
+d024b ed_cur_col_save ; byte
+d024c ed_cur_row_save ; byte
+d024d dlg_sel ; word: back-buffer offset of selected dialog button
+d024f dlg_number ; byte: typed level number
+d0250 ed_cur_cell ; word: cursor cell index = player start
+d0252 ed_cur_cell_save ; word
+d0254 player_pos ; word: player start cell index
+d0266 dlg_btn_left ; word: offset of left (OK/yes) button
+d0268 dlg_btn_right ; word: offset of right (no/clear) button
+d027b ed_exit_flag ; byte: 1 = leave editor after icon menu
+d0281 level_solved ; byte: set to 1 by game loop when solved
+d0282 file_handle ; word: DOS file handle scratch
+d028e dlg_digits ; byte: number of digits typed
+d036e edt_stat ; 49 bytes: per user level 51..99, 1 = verified solvable
+d039f move_records ; start of move record table (follows edt_stat)
+d566a level_rec ; 306 bytes: word player pos + 19x16 map (load/save record, map backup)
+d9364 rect_save ; 924 bytes: f_10af/f_10d2 save area (0x58cc+0x3a98)
+d992b lvl_file_buf ; 612 bytes: 2-level file buffer
+d02a6 tabl_names ; 8-byte file names tabl012..tab4950
+d166b edt_names ; 8-byte file names edt5152..ed99100
+c0000 pic_name_ptr ; far pointer to file name for f_0020
+c0070 joystick_mode ; byte: nonzero = joystick input
+c008a tandy_xlat_tbl ; word: CS offset of 256-word CGA->Tandy byte translation table

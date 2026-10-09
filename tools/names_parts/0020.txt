@@ -1,0 +1,37 @@
+0020 load_pic ; cs:[0] far ptr 파일 이름 -> 0x17EA에 읽고 RLE 풀어 ES:DI
+0a8c skb_main ; 시작점: 드라이브 찾기, 기록 읽기, 시스템/입력 묻기, 타이틀 애니, lobby
+1033 ctrl_break_handler ; int 23h: 모드 3, sp=0xC4, retf -> PSP:0
+103e check_disk ; 플로피면 0면 0트랙 1섹터 읽기, 안 되면 알림 후 키 대기
+10af save_rect ; 0x17EA+CX -> 0x9364, BP=폭 BX=줄 DX=줄 사이
+10d2 restore_rect ; 0x9364 -> 0x17EA+CX
+10f3 build_tandy_table ; SI=cs 팔레트맵, BP=cs 표: 256워드 CGA->Tandy
+1108 tandy_expand ; AL(2bpp 4점) -> DX(4bpp 4점)
+1166 wait_ticks ; BIOS 시각을 0으로 하고 틱 >= [0x226] 까지 대기
+1186 joy_axis ; DX=0x201 AH=축비트 -> CX=원샷 시간
+1194 joy_read ; 조이스틱 -> AH=1C/4D/4B/50/48/0
+121f speaker_sweep ; SI->{반주기,횟수,늘림}, 포트 61 bit1 직접 토글
+1243 delay ; AT면 BX 틱, 아니면 빈 루프
+129a lobby ; 로비: EXIT/EDIT/PLAY, 좌우 이동, Enter=문 들어가기(f_1ea4) 또는 EXIT(ret)
+1c30 lobby_walk ; 로비 사람 걷기: [0x272]표 [0x276]걸음 [0x278]횟수 [0x274]마지막 보정
+d021d data_drive ; byte, 데이터가 있는 DOS 드라이브 번호
+d021e video_type ; byte 'c' CGA / 't' Tandy
+d0233 title_spr_ofs ; word
+d0256 man_bg_ofs ; word
+d0258 spr_dest ; word
+d025a lobby_man_ofs ; word
+d025c lobby_man_addr ; word
+d025e elev_man_ofs ; word
+d0260 elev_man_addr ; word
+d026a joy_center_x ; word
+d026c joy_center_y ; word
+d026e door_ofs ; word
+d0270 door_addr ; word, 현재 문 절대 주소
+d0272 walk_tbl ; word
+d0274 walk_final_step ; word
+d0276 walk_step ; word
+d0278 walk_count ; word
+d027a lobby_exit_flag ; byte
+d027d title_start_flag ; byte
+d0284 play_door_addr ; word
+d1440 sector_buf ; 512바이트
+d17ea backbuf ; 16000바이트 선형 CGA

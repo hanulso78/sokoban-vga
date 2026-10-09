@@ -1,0 +1,25 @@
+3000 key enter
+6000 key left
+8500 key enter
+12000 key 5
+12500 key 1
+13000 key a
+24000 key esc
+27500 key enter
+30000 shot w1
+30300 key right
+30600 key enter
+31000 key right
+31300 key enter
+31700 key down
+32000 key enter
+32400 shot w2
+32700 key esc
+35500 key right
+36000 key enter
+38500 key down
+38800 key down
+39100 key enter
+39600 shot w3
+40000 shot w4
+40300 quit

@@ -1,0 +1,39 @@
+2cec:0000 glyph_ptr_table ; 27 words: blank, A..Z (8x8 2bpp, 16 bytes each)
+2cec:0036 glyph_scancode_table ; 27 bytes
+2cec:00fc bmp_single_label ; 18x8 bytes "Single"
+2cec:018c bmp_tournament_label ; 20x9 bytes "Tournament"
+2cec:0240 bmp_player_panel ; 12x48 bytes framed figure
+2cec:0480 bmp_cursor ; 2x2
+2cec:064c bmp_menu_arrow ; 2x9
+2cec:0670 tour_level_count ; byte, 토너먼트에 고른 단계 수 (tour_level_list 길이). 선수가 다 풀면 tour_last_round=1
+2cec:0671 tsel_enter_count ; byte, tour_select_levels 지금 칸에서 누른 Enter 수 (1=넣기/빼기, 2=되돌리기). 커서가 움직이면 0 (추정)
+2cec:0672 tsel_cursor_level ; byte, tour_select_levels 커서가 가리키는 단계 1..99 (좌우 +-1, 상하 +-9)
+2cec:0673 resume_mode ; byte, players_screen 에서 첫 이름을 비우고 Enter 면 1 (이어하기 메뉴). tour_main: 1 이면 TOUR 파일 상태로 계속
+2cec:0674 tour_finished ; byte, 토너먼트 끝 (마지막 라운드가 한 바퀴 돈 뒤 1). TOUR 머리 5번째 바이트
+2cec:0675 tour_last_round ; byte, 누가 고른 단계를 다 풀면 1 (남은 선수까지 이번 라운드를 마치면 끝). TOUR 머리 4번째 바이트
+2cec:0676 tour_next_level_loaded ; byte, 단계를 풀고 다음 단계를 불러왔으면 1 (같은 선수가 남은 시간으로 계속) (추정)
+2cec:0678 tour_list_end_ptr ; word, tour_level_list 에서 다음에 넣을 자리
+2cec:067a tsel_cursor_scr ; word, tour_select_levels 9x11 격자 커서의 백버퍼 화면 오프셋
+2cec:067c name_panel_scr ; word, players_screen 지금 선수 패널 (bmp_player_panel) 의 화면 오프셋
+2cec:067e name_digit_scr ; word, players_screen 지금 선수 번호 숫자 (2x9) 의 화면 오프셋
+2cec:0680 blit_width ; byte, blit_rect_opaque 의 한 줄 바이트 수
+2cec:0681 tour_time_mark_ptr ; word, TOUR 읽기/쓰기 루프에서 pl_time_mark 를 3바이트씩 도는 포인터
+2cec:0683 tour_time_carry_ptr ; word, TOUR 읽기/쓰기 루프에서 pl_time_carry 를 3바이트씩 도는 포인터
+2cec:0685 text_draw_pos ; word, draw_name_glyph 의 글자 화면 위치 (이름 입력, 점수판 출력)
+2cec:0687 name_cursor_scr ; word, draw_name_cursor 밑줄 커서 화면 위치
+2cec:0689 num_players ; byte, 토너먼트 선수 수 1..4 (이름 입력 중에는 입력 중인 선수 번호). TOUR 머리 첫 바이트, 0 이면 없음
+2cec:068a name_len ; byte, 입력 중인 이름 길이 0..10
+2cec:068b menu_arrow_scr ; word, 메뉴 화살표 (bmp_menu_arrow) 의 화면 오프셋: 고른 항목 판정에도 쓴다
+2cec:068f cur_player ; byte, 지금 차례 선수 번호 (1부터). TOUR 머리 2번째 바이트
+2cec:0690 pl_pushes ; word[4], 선수별로 하던 단계의 pushes (차례가 오면 되살린다)
+2cec:0698 pl_moves ; word[4], 선수별로 하던 단계의 moves
+2cec:06a0 pl_score_total ; word[4], 선수별 확정 점수 (푼 단계 점수 합)
+2cec:06a8 pl_score_shown ; word[4], 선수별 보이는 점수 = pl_score_total + 하던 단계의 부분 점수
+2cec:06b0 pl_time_mark ; byte[4][3] 시/분/초, 선수별로 이번 차례에 단계를 시작한 시각 (추정)
+2cec:06bc pl_level_idx ; byte[4], 선수별 tour_level_list 위치 (지금 단계 = tour_level_list[idx])
+2cec:06c0 pl_solved_count ; byte[4], 선수별 푼 단계 수
+2cec:06c4 pl_time_carry ; byte[4][3] 시/분/초, 선수별로 지금 단계에 앞 차례까지 쓴 시간 (추정)
+2cec:06d0 tour_level_list ; 99 bytes, 토너먼트에 고른 단계 번호들
+2cec:0733 pl_level_state[4] ; 306 bytes each, 선수별 하던 단계 판 (말 자리 + 19x16)
+2ca1:0008 digit_ptr_table ; 0..9, 2x9 bytes
+2ca1:0490 player_num_ptr_table ; digits 0..4

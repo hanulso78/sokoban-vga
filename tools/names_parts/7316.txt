@@ -1,0 +1,11 @@
+7316 anim_move_left ; animate player walking/pushing one cell left (2 phases of 8px; walk 2+2 frames, push 4+4 frames); [0x247]-=4
+7bff anim_move_up ; animate walk/push up: 2 phases x 2 frames, 3 lines/frame; BUG: [0x9bbf] reset each frame -> frames 0,0,2,2
+8032 anim_move_down ; animate walk/push down: 2 phases x 2 frames, frames 0..3
+6a58 anim_move_right ; right-move animation
+4b61 blit_masked ; dst=(dst&[si])|[si+[0x243]], [0x23d] rows x [0x23f] bytes, src skip [0x241], ES=0A39
+d9bc1 anim_sprite_ofs ; word, moving sprite back-buffer offset (vertical moves); also general temp / number arg
+d9bc3 anim_frames_left ; word
+d9bc5 anim_phases_left ; word
+d9bc7 anim_box_ofs ; word
+d9bc9 anim_vstep ; word, 0xF0 (3 scanlines)
+d9cea spr_box_hshift ; word[5] box pre-shifted 2px steps (32x16, mask+0x80)

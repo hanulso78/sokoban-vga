@@ -1,0 +1,12 @@
+# 코드 정리 때 더한 이름 (DS 변수, 파일 이름 문자열, BIOS)
+d021b dos_input_char ; byte, INT21h AH=0Ah 버퍼(0x219: 최대 길이, 0x21a: 입력 수)의 첫 입력 문자. 시스템(c/t)과 입력 장치(j/k) 질문 응답
+d9bdb tune_note_on_len ; word, play_tune 에서 음을 울리는 지연 길이 (= 음 길이 x 게이트 / 256)
+d9bdd tune_note_off_len ; word, play_tune 에서 음 사이 쉼 (= 음 길이 - tune_note_on_len)
+d1640 fname_edt_stat ; "edt_stat" 파일 이름
+d1649 fname_move ; "move" 파일 이름 (최소 이동 기록)
+d164e fname_push ; "push" 파일 이름 (최소 밀기 기록)
+d1653 fname_time ; "time" 파일 이름 (최단 시간 기록)
+d1658 fname_score ; "score" 파일 이름 (최고 점수 기록)
+d165e fname_names ; "names" 파일 이름 (기록 보유자 이름)
+bios:041a kbd_buf_head ; word, BIOS 키보드 버퍼 머리 (0040:001A). 코드는 DS=0 으로 0000:041A 에 접근, tail 에 복사해 버퍼를 비운다
+bios:041c kbd_buf_tail ; word, BIOS 키보드 버퍼 꼬리 (0040:001C)

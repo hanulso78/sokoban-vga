@@ -1,0 +1,19 @@
+3000 key enter
+6000 key left
+8500 key enter
+12000 key 5
+12500 key 1
+13000 key a
+24000 key esc
+27500 shot i1
+28000 key right
+29000 shot i2
+29500 key down
+30500 shot i3
+31000 key left
+32000 shot i4
+32500 key down
+33500 shot i5
+34000 key right
+35000 shot i6
+35500 quit

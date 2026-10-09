@@ -1,0 +1,24 @@
+1c30 lobby_walk ; 로비 사람 걷기
+1ea4 elevator_screen ; elev.bin 층 선택: 숫자/L/C/A 키, 검증, 층이동 애니, 레벨 로드 -> game_loop 또는 edit_loop
+2c34 elev_joy_nav ; [0x22e] 버튼ID와 AH 방향 -> DL=이웃 버튼ID (표 0x17a9)
+2c72 elev_man_cross ; BX=±0x54 사람 좌/우 열 전환
+2d44 elev_press_button ; BX=버튼행*2, [0x276]=열오프셋; 손뻗기 자세
+2e69 elev_update_entry ; 입력창 숫자/L/공백 그리기
+2f25 button_beep ; 단추 삐 소리 (speaker_sweep)
+2f48 draw_floor_glyph ; BX=글자*2(0x180c:0xe 표), DX=백버퍼 오프셋, 3바이트x8줄
+2f6d elev_travel_anim ; 층 표시 올라가기/내려가기 애니
+30eb edit_loop ; 편집기: 커서 이동, Enter=도구로 셀 토글, Esc=editor_icon_menu
+d022e elev_sel_btn ; 조이스틱 커서 버튼 ID
+d0236 elev_last_digit ; 마지막 숫자
+d023a back_to_lobby ; 쓰기만 함
+d023b floor_ind_addr ; 층 표시기 백버퍼 주소
+d0264 elev_man_col ; 엘리베이터 사람 열 / 걷기 나머지
+d0286 travel_floors ; 이동할 층 수
+d0287 travel_down ; 1=내려감
+d0288 ind_tens ; 층 표시 십의 자리
+d0289 ind_units ; 층 표시 일의 자리
+d17a9 elev_nav_tbl ; 조이스틱 버튼 탐색표 13x5
+d9750 floor_ind_img ; 층 표시 6x8 이미지
+d9780 ed_under_cursor ; 커서 아래 6x16 저장
+d97e0 ed_under_cursor2 ; 커서 아래 6x16 저장 (배치 후)
+ddc60 ed_cursor_spr ; 편집기 커서 스프라이트

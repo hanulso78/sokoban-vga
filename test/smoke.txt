@@ -1,0 +1,16 @@
+3000 shot s1
+4000 key enter
+7000 shot s2
+7500 key left
+9000 shot s3
+9500 key right
+11000 key enter
+14000 shot s4
+14500 key enter
+16000 key enter
+19000 shot s5
+19500 key up
+20000 key up
+20500 key left
+21500 shot s6
+22000 quit
