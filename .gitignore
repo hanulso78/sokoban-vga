@@ -37,7 +37,10 @@ tools/sol1.txt
 /save_orig/
 /data/
 
-# 배포 폴더(release/)는 받아서 바로 돌릴 수 있게 저장소에 함께 둔다
+# 배포 폴더(release/)는 받아서 바로 돌릴 수 있게 저장소에 함께 둔다 (묶음 파일은 뺀다)
+/release/*.rar
+/release/*.zip
+/release/*.7z
 /release/*.BMP
 /release/SKBLOG.TXT
 /release/SKBTEST.TXT
